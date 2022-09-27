@@ -106,16 +106,6 @@ class Arduino:
             msg[2] = x
             self.write(msg)
 
-    def _load_intervals(self,intervals):
-        msg = [(SET_TIME_INTERVALS).to_bytes(8,'big'),0,0,0]
-        for idx,x in enumerate(intervals):
-            msg[1] = idx.to_bytes(8,'big')
-            msg[3] = ((x >> 8) & 0xff).to_bytes(8,'big')
-            msg[2] = (x & 0xff).to_bytes(8,'big')
-            _msg = b''.join(msg)
-            self.ser.write(_msg)
-            self.ser.flush()
-    
     def load_intervals(self,intervals):
         msg = [SET_TIME_INTERVALS,0,0,0]
         for idx,x in enumerate(intervals):
