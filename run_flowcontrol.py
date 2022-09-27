@@ -28,7 +28,8 @@ if __name__=="__main__":
     
     params = parser.parse_args()
     ard = Arduino(config_file=params.config) 
-    
+    time.sleep(1)
+
     print('Checking firmware')
     assert ard.checkFirmware(), f'Firmware {ard.firmwareVersion} not found on Arduino board'
     print(f'Firmware {ard.firmwareVersion} found')
